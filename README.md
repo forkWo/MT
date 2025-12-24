@@ -10,18 +10,22 @@
 ### 使用方法
 1. fork 或者上传此项目
 2. 在Actions菜单允许 `I understand my workflows, go ahead and enable them` 按钮
-
 3. 在 GitHub 仓库的 Settings → Secrets and variables → Actions 中添加以下环境变量
-   - 账号密码之间用英文冒号分隔，账号与账号之间英文逗号分隔
-   - `mtluntan`  账户(必填)，格式(单账号)：user:pass   格式(多账号)：user1:pass1,user2:pass2 
-   - `ips`  由于这是国外的网站无法签到所以需要用代理ip，变量ips，输入格式ip:端口，多个代理需要换行输入
-例如:  
+   - 添加账号: 变量名`mtluntan` 
+     ```
+     //单账号格式:
+     user:pass
+     //多账号格式:
+     user1:pass1,user2:pass2
+     ```
+   - 添加代理: 变量名`ips`  
+     由于这是国外的网站无法签到所以需要用代理ip，输入格式`ip:端口`，多个代理需要换行输入  
+   例如:  
      ```
      127.0.0.1:80  
      127.0.0.1:81  
      127.0.0.1:82
      ```
-
 4. GitHub Actions 初始手动执行检查是否有配置错误，脚本会自动每天执行,可手动执行
 
 ### 注意事项
