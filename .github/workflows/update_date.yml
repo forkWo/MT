@@ -1,4 +1,4 @@
-name: Update Last Update Date
+name: 保存最后更新时间
 
 on:
   push:
@@ -15,7 +15,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Update last update date
+      - name: 更改最后更新时间
         run: |
           # 获取当前日期
           CURRENT_DATE=$(date -u +"%Y年%m月%d日 %H点%M分" --date='8 hours')
@@ -23,7 +23,7 @@ jobs:
           # 替换 README.md 中的日期
           sed -i "s/###### \*\*最后更新日期.*\*\*/###### \*\*最后更新日期：$CURRENT_DATE\*\*/" README.md
 
-      - name: Commit changes
+      - name: 提交
         run: |
           git config --local user.name "github-actions"
           git config --local user.email "github-actions@github.com"
