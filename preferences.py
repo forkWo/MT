@@ -106,3 +106,5 @@ def save_prefs_to_git():
             os.system('git push --quiet')
         except Exception as e:
             print(f"Git操作失败: {e}")
+
+save_prefs_to_git()
