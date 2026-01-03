@@ -117,6 +117,8 @@ def start():
             if checkIn(username, accounts_list[username], proxies): break
         if i < total - 1:
             time.sleep(3)
+def y(t, p):
+    print(f"{t} - {p}ms")
 
 ACCOUNTS = os.environ.get("ACCOUNTS", "")
 IPS = os.environ.get("IPS", "")
@@ -142,6 +144,6 @@ if accounts_list:
     lo()
     print("可用ip:")
     for proxy, req_time in successful_proxies:
-        print(f"{proxy} - {req_time}ms")
+        y(proxy, req_time)
 if successful_proxies:
     start()
