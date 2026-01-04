@@ -1,30 +1,3 @@
-        run: |
-          git config --local user.name "github-actions" >/dev/null 2>&1
-          git config --local user.email "github-actions@github.com" >/dev/null 2>&1
-          git add README.md >/dev/null 2>&1
-          if ! git diff --cached --quiet; then
-            git commit -m "自动更新最后更新日期" >/dev/null 2>&1
-            git pull --quiet origin main >/dev/null 2>&1
-            git push --quiet origin main >/dev/null 2>&1
-            echo "更新成功"
-          else
-            echo "无更改可提交"
-          fi
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 import os, random, atexit, pytz, base64
 from pathlib import Path
 from sqlitedict import SqliteDict
