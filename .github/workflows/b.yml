@@ -24,4 +24,4 @@ jobs:
         pip install -r requirements.txt
 
     - name: 运行
-      run: python b.py
+      run: python verify.txt
