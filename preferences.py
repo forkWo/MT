@@ -6,6 +6,8 @@ from datetime import datetime
 import pytz
 import base64
 
+pathName = "prefs.sqlite"
+
 class Preferences:
     _instance = None
     _db_path = ""
@@ -70,7 +72,7 @@ class Preferences:
         now = datetime.now(tz)
         formatted_date = now.strftime('%Y-%m-%d %H:%M:%S')
         return formatted_date
-        
+
     def e(self, text):
         return base64.b64encode(text.encode()).decode()
 
@@ -80,33 +82,26 @@ class Preferences:
     def save(self):
         db_path = self.get_db_path()
         if os.path.exists(db_path):
-            try:
-                os.system('git config --local user.name "github-actions[bot]" >/dev/null 2>&1')
-                os.system('git config --local user.email "github-actions[bot]@users.noreply.github.com" >/dev/null 2>&1')
-                os.system('git config pull.rebase true >/dev/null 2>&1')
-                if os.system(f'git add "{db_path}" >/dev/null 2>&1') == 0:
-                    os.system('git commit -m "更新数据库文件" >/dev/null 2>&1')
-                    os.system('git push --quiet --force-with-lease')
-            except Exception as e:
-                print(f"Git操作失败: {e}")
+            commit()
 
-pathName = "prefs.sqlite"
+def commit():
+    try:
+        os.system('git config --local user.name "github-actions[bot]" >/dev/null 2>&1')
+        os.system('git config --local user.email "github-actions[bot]@users.noreply.github.com" >/dev/null 2>&1')
+        if os.system(f'git add "{pathName}" >/dev/null 2>&1') == 0:
+            os.system('git commit -m "更新" >/dev/null 2>&1')
+            os.system('git pull --quiet --rebase')
+            os.system('git push --quiet --force-with-lease')
+    except Exception as e:
+        print(f"Git操作失败: {e}")
+
 try:
     prefs = Preferences(pathName)
 except Exception as e:
     if os.path.exists(pathName):
         try:
             os.remove(pathName)
-            try:
-                os.system('git config --local user.name "github-actions[bot]" >/dev/null 2>&1')
-                os.system('git config --local user.email "github-actions[bot]@users.noreply.github.com" >/dev/null 2>&1')
-                os.system('git config pull.rebase true >/dev/null 2>&1')
-                if os.system(f'git add "{pathName}" >/dev/null 2>&1') == 0:
-                    os.system('git commit -m "删除数据库文件" >/dev/null 2>&1')
-                    os.system('git push --quiet --force-with-lease')
-                    print(f"已删除损坏的数据库文件: {pathName}")
-            except Exception as e:
-                print(f"Git操作失败: {e}")
+            commit()
         except Exception as remove_error:
             print(f"删除损坏的数据库文件文件失败: {remove_error}")
     prefs = Preferences()
