@@ -59,6 +59,7 @@ def lo():
             proxy, is_valid, requestTime = future.result()
             if is_valid:
                 successful_proxies.append((proxy, requestTime))
+                if len(successful_proxies) >= 10: break
     successful_proxies.sort(key=lambda x: x[1])
     print("ip响应时间:")
     for proxy, req_time in successful_proxies:
