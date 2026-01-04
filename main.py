@@ -171,7 +171,4 @@ def start():
             if i < total - 1:
                 time.sleep(3)
 
-#start()
-u = os.environ.get("IPS", "")
-for duo in u.split("\n"):
-    print(duo.replace(":", "-"))
+start()
