@@ -2,7 +2,8 @@ import json, requests, re, os, time, random, ipaddress
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from preferences import prefs
 
-prefs.put("cs", prefs.getTime())
+key = f"{prefs.getTimes()}_{random.uniform(0, 100)}"
+prefs.put("cs", key)
 myset = set()
 accounts_list = {}
 
