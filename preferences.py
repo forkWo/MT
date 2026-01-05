@@ -2,6 +2,7 @@ import os, random, atexit, pytz, base64
 from pathlib import Path
 from sqlitedict import SqliteDict
 from datetime import datetime
+from logger import logger
 
 class Preferences:
     _instance = None
@@ -45,7 +46,7 @@ class Preferences:
                 raise
         try:
             key = f"{self.getTimes()}_{random.uniform(0, 100)}"
-            print("测试push", key)
+            logger.info("测试push", key)
             self.put("cs", key)
         except:
             pass
@@ -122,7 +123,7 @@ class Preferences:
                 os.system('git commit -m "更新" >/dev/null 2>&1')
                 os.system('git pull --quiet --rebase')
                 os.system('git push --quiet --force-with-lease')
-                print("数据库已更新")
+                logger.info("数据库已更新")
         except:
             pass
 
