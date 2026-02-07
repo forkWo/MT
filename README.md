@@ -69,5 +69,10 @@
 2. 首次运行 GitHub Actions 需要授权
 3. 脚本执行时间为 UTC 0:00（香港时间 8:00）
 
+## 历史Star数
+
+[![Stargazers over time](https://starchart.cc/klaas8/MT.svg)](https://starchart.cc/klaas8/MT)
+
+
 ## 许可证
 GPL 3.0
