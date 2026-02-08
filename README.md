@@ -73,6 +73,7 @@
 
 [![Stargazers over time](https://starchart.cc/klaas8/MT.svg)](https://starchart.cc/klaas8/MT)
 
+[![Star History Chart](https://api.star-history.com/svg?repos=klaas8/MT&type=date&legend=top-left)](https://www.star-history.com/#klaas8/mt&type=date&legend=top-left)
 
 ## 许可证
 GPL 3.0
