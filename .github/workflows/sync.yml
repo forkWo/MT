@@ -23,4 +23,7 @@ jobs:
           git fetch upstream
           #git reset --hard upstream/main
           git checkout upstream/main
+          git init
+          git add .
+          git -c user.name="GitHub Actions" -c user.email="actions@github.com" commit -m "Sync from upstream with excludes"
           git push origin main --force
