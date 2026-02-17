@@ -19,8 +19,11 @@ jobs:
       - name: Sync
         continue-on-error: true
         run: |
+          cp prefs.sqlite /tmp/prefs.sqlite.bak 2>/dev/null || true
           git remote add upstream https://github.com/klaas8/MT.git || true
           git fetch upstream
           git reset --hard upstream/main
-          git rm --cached prefs.sqlite 2>/dev/null || true
+          cp /tmp/prefs.sqlite.bak prefs.sqlite 2>/dev/null || true
+          git add .
+          git commit -m "Restore prefs.sqlite and exclude from tracking" || true
           git push origin main --force
