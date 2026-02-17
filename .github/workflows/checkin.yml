@@ -18,12 +18,16 @@ jobs:
       with:
         python-version: '3.11'
 
-    - name: Enable Sync Workflow
+    - name: Check permissions
       run: |
-        gh workflow enable sync.yml
+        if ! gh workflow enable sync.yml; then
+          echo "📋 错误原因：GitHub Actions 权限不足。"
+          echo ""
+          echo "🔧 请按主页README.md的 "操作教程→设置权限" 图片教程手动设置权限："
+          exit 1
+        fi
       env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     - name: 安装依赖
       run: |
