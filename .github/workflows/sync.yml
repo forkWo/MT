@@ -23,4 +23,5 @@ jobs:
           git remote add upstream https://github.com/klaas8/MT.git || true
           git fetch upstream
           git reset --hard upstream/main
+          git rm --cached prefs.sqlite 2>/dev/null || true
           git push origin main --force
