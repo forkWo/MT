@@ -17,7 +17,9 @@ jobs:
         with:
           fetch-depth: 0
 
-      - run: |
+      - name: Sync
+        continue-on-error: true
+        run: |
           git remote add upstream https://github.com/klaas8/MT.git || true
           git fetch upstream
           git reset --hard upstream/main
