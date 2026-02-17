@@ -16,12 +16,11 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Sync with precise exclude
+      - name: Sync Push
         continue-on-error: true
         run: |
           git remote add upstream https://github.com/klaas8/MT.git || true
           git fetch upstream
-          # 排除指定文件不被覆盖
           EXCLUDE_FILES=("prefs.sqlite")
           for file in "${EXCLUDE_FILES[@]}"; do
             if [ -f "$file" ]; then
@@ -29,9 +28,7 @@ jobs:
               cp "$file" ".tmp-exclude/$(echo "$file" | tr '/' '_')"
             fi
           done
-          # 强制替换
           # git reset --hard upstream/main
-          # 替换，但保留索引
           git read-tree -um HEAD
           git read-tree -um upstream/main
           for file in "${EXCLUDE_FILES[@]}"; do
@@ -42,7 +39,6 @@ jobs:
             fi
           done
           rm -rf .tmp-exclude
-          # 提交更改
           git -c user.name="GitHub Actions" -c user.email="actions@github.com" \
             commit -m "Sync with upstream, exclude specified files" || true
           git push origin main --force
