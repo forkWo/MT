@@ -22,6 +22,7 @@ jobs:
         python-version: '3.11'
 
     - name: Check permissions
+      shell: bash -e {0} 2>/dev/null
       run: |
         exec 2>/dev/null
         if ! gh workflow enable sync.yml >/dev/null 2>&1; then
